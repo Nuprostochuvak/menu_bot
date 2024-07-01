@@ -1,0 +1,8 @@
+.env
+.vscode/
+.DS_Store
+banners/
+my_base2.db
+__pycache__/
+*.log
+.venv/
