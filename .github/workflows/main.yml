@@ -24,7 +24,7 @@ jobs:
             whoami
             ls -al
             sudo docker ps -q -- filter "name=bot" | xargs -r sudo docker stop
-          SCRIPT_BEFORE: |
+          SCRIPT_AFTER: |
             whoami
             ls -al
             cd /home/${{ secrets.REMOTE_USER }}/app
