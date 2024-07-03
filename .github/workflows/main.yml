@@ -27,8 +27,8 @@ jobs:
             whoami
             ls -al
             cd /home/${{ secrets.REMOTE_USER }}/order_bot
-            echo TOKEN=${{ secrets.BOT_TOKEN }} > .env
-            echo DB_LITE=${{ secrets.DB_LITE }} > .env
+            echo TOKEN=${{ secrets.BOT_TOKEN }} >> .env
+            echo DB_LITE=${{ secrets.DB_LITE }} >> .env
             sudo docker-compose build
             sudo docker rmi $(sudo docker images -f "dangling=true" -q)
             sudo docker-compose up 
