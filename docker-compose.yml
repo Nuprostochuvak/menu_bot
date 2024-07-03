@@ -1,14 +1,10 @@
 version: '3'
-
 services:
   bot:
     env_file: ".env"
     build: .
     container_name: bot
-    #comand: python app.py
     volumes:
-      - ./db:/bot/db
-  
-
+      - ./db:/bot/db 
 volumes:
   db:
