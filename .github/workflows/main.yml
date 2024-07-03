@@ -21,7 +21,7 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/home/${{ secrets.REMOTE_USER }}/app"
+          TARGET: "/home/${{ secrets.REMOTE_USER }}/order_bot"
           EXCLUDE: ".git/*,.github/*,.gitignore, .env"
           SCRIPT_BEFORE: |
             whoami
