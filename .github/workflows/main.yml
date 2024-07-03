@@ -1,0 +1,36 @@
+name: Deploy
+
+on: [push main]
+
+jobs:
+  build:
+
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: "/home/${{ secrets.REMOTE_USER }}/app"
+          EXCLUDE: ".git/*,.github/*,.gitignore, .env"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+            sudo docker ps -q -- filter "name=bot" | xargs -r sudo docker stop
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+            cd /home/${{ secrets.REMOTE_USER }}/app
+            echo BOT_TOKEN= ${{ secrets.REMOTE_USER }} > .env
+            sudo docker-compose build
+            sudo docker rmi $(sudo docker images -f "dangling=true" -q)
+            sudo docker-compose up 
+
+
