@@ -5,6 +5,6 @@ services:
     build: .
     container_name: bot
     volumes:
-      - ./db:/bot/db 
+      - /home/user1/db:/bot/db 
 volumes:
   db:
