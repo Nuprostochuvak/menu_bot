@@ -31,6 +31,6 @@ jobs:
             echo DB_LITE=${{ secrets.DB_LITE }} >> .env
             sudo docker-compose build
             sudo docker rmi $(sudo docker images -f "dangling=true" -q)
-            sudo docker-compose up 
+            sudo docker-compose up -d
 
 
